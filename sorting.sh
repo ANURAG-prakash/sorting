@@ -1,13 +1,28 @@
 #!/bin/bash -x
 echo "---Arithmetic sorting---"
 
-resultArray[exp2]=$(($Number1*$Number2+$Number3));
 read -p "Enter value of a :" Number1
 read -p "Enter value of b :" Number2
 read -p "Enter value of c :" Number3
 
 declare -A resultArray
-resultArray[exp1]=$(( $Number1 + $Number2 * $Number3));
-resultArray[exp2]=$(($Number1*$Number2+$Number3));
-resultArray[exp3]=$(($Number3+$Number1/$Number2));
-resultArray[exp4]=$(($Number1%$Number2+$Number3));
+resultArray[1]=$(( Number1+Number2*Number3));
+resultArray[2]=$(( Number1*Number2+Number3));
+resultArray[3]=$(( Number3+Number1/Number2));
+resultArray[4]=$(( Number1%Number2+Number3));
+temp=0
+for (( i=1; i<6; i++ ))
+do
+        for (( j=1; j<6-i-1; j++ ))
+        do
+                if [ ${resultArray[j]} -gt ${resultArray[$(( j+1 ))]} ]
+                then
+                        temp=${resultArray[j]}
+                        resultArray[$j]=${resultArray[$((j+1))]}
+                        resultArray[$((j+1))]=$temp
+                fi
+        done
+done
+echo ${resultArray[@]}
+
+
