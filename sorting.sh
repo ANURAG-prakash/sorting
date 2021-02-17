@@ -11,9 +11,9 @@ resultArray[2]=$(( Number1*Number2+Number3));
 resultArray[3]=$(( Number3+Number1/Number2));
 resultArray[4]=$(( Number1%Number2+Number3));
 temp=0
-for (( i=1; i<6; i++ ))
+for (( i=1; i<5; i++ ))
 do
-        for (( j=1; j<6-i-1; j++ ))
+        for (( j=1; j<5-i-1; j++ ))
         do
                 if [ ${resultArray[j]} -gt ${resultArray[$(( j+1 ))]} ]
                 then
